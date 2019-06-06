@@ -19,6 +19,13 @@ hr{
   border-top: 1px solid #dedede;
 }
 
+ul,ol{
+  list-style: none;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: normal;
+}
+
 .clearfix::after {
   content: '';
   display: block;
@@ -217,4 +224,50 @@ main > p.selfIntroduction{
   text-align: center;
   font-size: 14px;
   line-height: 1.8;
+  font-family: kai;
+}
+
+section.skills{
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+section.skills > h2{
+  text-align: center;
+  color: #3d4451;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+section.skills > ol{
+  padding: 42px 50px 12px;
+  background: white;
+  box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.2);
+}
+
+section.skills > ol > li{
+  float: left;
+  width: 48%;
+  box-sizing: border-box;
+}
+
+section.skills > ol > li:nth-child(even){
+  float: right;
+}
+
+section.skills .progressBar{
+  height: 5px; 
+  background: #fae1e1;
+  border-radius: 1.5px;
+  margin: 3.5px 0 40px;
+}
+
+section.skills .progressBar .progress{
+  height: 100%;
+  background: #e6686a;
+  width: 70%;
+  border-radius: 1.5px;
 }
