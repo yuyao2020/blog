@@ -64,19 +64,35 @@
 
     }
     index = 0
-    while (index < keys['length']) {//0 1 2 
+    while (index < keys['length']) { //0 1 2 
       divXX = document.createElement('div')
       mainXX.appendChild(divXX)
-      row = keys[index]//第一个数组 第二个数组 第三个数组
+      row = keys[index] //第一个数组 第二个数组 第三个数组
       /*console.log(row)*/
       index2 = 0
-      while (index2 < row['length']) {// 0~9 0~8 0~6
+      while (index2 < row['length']) { // 0~9 0~8 0~6
         kbdXX = document.createElement('kbd')
-        divXX.appendChild(kbdXX)
         kbdXX.textContent = row[index2]
+        buttonXX = document.createElement('button')
+        buttonXX.textContent = 'c'
+        buttonXX.id = row[index2]
+        buttonXX.onclick = function (zzz) {
+          key = zzz['target']['id'] // q w e 
+          x = prompt('给我一个网址')
+          hash[key] = x
+          console.log(hash)
+
+        } 
+        kbdXX.appendChild(buttonXX)
+        divXX.appendChild(kbdXX)
         index2 = index2 + 1
       }
       index = index + 1
+    }
+    document.onkeypress = function (zzz) {
+      key = zzz['key'] // q w e 
+      website = hash[key]
+      window.open('http://' + website, '_blank')
     }
   </script>
 </body>
