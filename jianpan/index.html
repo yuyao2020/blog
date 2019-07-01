@@ -63,6 +63,10 @@
       r: 'renren.com'
 
     }
+    var hashInlocalStorage = JSON.parse(localStorage.getItem('zzz')||'')
+    if(hashInlocalStorage){
+        hash = hashInlocalStorage
+    }
     index = 0
     while (index < keys['length']) { //0 1 2 
       divXX = document.createElement('div')
@@ -80,6 +84,7 @@
           key = zzz['target']['id'] // q w e 
           x = prompt('给我一个网址')
           hash[key] = x
+          localStorage.setItem('zzz',JSON.stringify(hash))
           console.log(hash)
 
         } 
