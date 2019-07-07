@@ -11,7 +11,10 @@
 
 <body>
   <header></header>
-  <main>
+  <main>  
+    <style>
+      
+    </style>
     <div class="wrapper" id="mainXX">
 
     </div>
@@ -70,16 +73,28 @@
     index = 0
     while (index < keys['length']) { //0 1 2 
       divXX = document.createElement('div')
+      divXX.className = 'row'
       mainXX.appendChild(divXX)
       row = keys[index] //第一个数组 第二个数组 第三个数组
       /*console.log(row)*/
       index2 = 0
       while (index2 < row['length']) { // 0~9 0~8 0~6
         kbdXX = document.createElement('kbd')
-        kbdXX.textContent = row[index2]
+        spanXX = document.createElement('span')
+        spanXX.textContent = row[index2]
+        kbdXX.appendChild(spanXX)
+        spanXX.className = 'text'
+        kbdXX.className = 'key'
         buttonXX = document.createElement('button')
         buttonXX.textContent = 'c'
         buttonXX.id = row[index2]
+        imgXX = document.createElement('img')
+        if(hash[row[index2]]){
+          imgXX.src = 'http://'+hash[row[index2]]+'/favicon.ico'
+        }/*else{
+          imgXX.src = '//i.loli.net/2019/07/07/5d21badeb2b6816959.jpg'
+        }*/
+       
         buttonXX.onclick = function (zzz) {
           key = zzz['target']['id'] // q w e 
           x = prompt('给我一个网址')
@@ -88,6 +103,7 @@
           console.log(hash)
 
         } 
+        kbdXX.appendChild(imgXX)
         kbdXX.appendChild(buttonXX)
         divXX.appendChild(kbdXX)
         index2 = index2 + 1
