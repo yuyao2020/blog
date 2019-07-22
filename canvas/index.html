@@ -11,9 +11,29 @@
  
   <canvas id="xxx" width=300 height=300></canvas>
   <div id=actions class="actions">
-    <button id="eraser">橡皮</button>
-    <button id="brush">画笔</button>
+      <svg id="pen" class=" active icon" >
+          <use xlink:href="#icon-pen"></use>
+      </svg>
+      <svg id="eraser" class="icon" >
+          <use xlink:href="#icon-eraser"></use>
+      </svg>
+      <svg id="clear" class="icon" >
+          <use xlink:href="#icon-Clear"></use>
+      </svg>
+      <svg id="save" class="icon" >
+          <use xlink:href="#icon-save"></use>
+      </svg>
   </div>
+  <ol class="colors">
+    <li id="red" class="red active" ></li>
+    <li id="green" class="green" ></li>
+    <li id="blue" class="blue" ></li>
+  </ol>
+  <ol class="sizes">
+    <li id="thin" class="thin" ></li>
+    <li id="thick"  class="thick" ></li>
+  </ol>
   <script type="text/javascript" src="./main.js"></script>
+  <script src="//at.alicdn.com/t/font_1308289_b5jtlq2ov4j.js"></script>
 </body>
 </html>

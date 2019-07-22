@@ -1,5 +1,6 @@
 var yyy = document.getElementById('xxx');
 var context = yyy.getContext('2d');
+var lineWidth = 5;
 
 autoSetCanvaSize(yyy)
 listenToUser(yyy)
@@ -9,15 +10,60 @@ var eraserEnabled = false
 eraser.onclick = function () {
   eraserEnabled = true
   actions.className = 'actions x'
+  eraser.classList.add('active')
+  pen.classList.remove('active')
 }
 
-brush.onclick = function () {
+pen.onclick = function () {
   eraserEnabled = false
   actions.className = 'actions'
+  pen.classList.add('active')
+  eraser.classList.remove('active')
 }
 
+red.onclick = function(){
+  context.strokeStyle = 'red'
+  red.classList.add('active')
+  green.classList.remove('active')
+  blue.classList.remove('active')
+}
+
+green.onclick = function(){
+  context.strokeStyle = 'green'
+  red.classList.remove('active')
+  green.classList.add('active')
+  blue.classList.remove('active')
+}
+
+blue.onclick = function(){
+  context.strokeStyle = 'blue'
+  red.classList.remove('active')
+  green.classList.remove('active')
+  blue.classList.add('active')
+}
+
+thin.onclick = function(){
+  lineWidth = 5
+}
+
+thick.onclick = function(){
+  lineWidth = 9
+}
+
+clear.onclick = function(){
+  context.clearRect(0, 0, xxx.width, xxx.height);
+}
+save.onclick = function(){
+  var url = xxx.toDataURL('image/png');
+  var a = document.createElement('a')
+  document.body.appendChild(a)
+  a.href = url
+  a.download = '我的画儿'
+  a.target = '_blank'
+  a.click()
+}
 /*$$$$$$$$$*/
-//监听键盘
+//监听用户
 function listenToUser(canvas) {
   var using = false
   var lastPoint = {
@@ -28,10 +74,10 @@ function listenToUser(canvas) {
   if(document.body.ontouchstart !== undefined){
     //触屏设备
     canvas.ontouchstart = function (aaa) {
-      console.log('开始摸我了')
+      //console.log('开始摸我了')
       var x = aaa.touches[0].clientX
       var y = aaa.touches[0].clientY
-      console.log(x,y)
+      //console.log(x,y)
       using = true
       if (eraserEnabled) {
         context.clearRect(x, y, 10, 10)
@@ -44,7 +90,7 @@ function listenToUser(canvas) {
 
     }
     canvas.ontouchmove = function (aaa) {
-      console.log('边摸边动')
+      //console.log('边摸边动')
       var x = aaa.touches[0].clientX
       var y = aaa.touches[0].clientY
       if (!using) {
@@ -65,7 +111,7 @@ function listenToUser(canvas) {
     }
     canvas.ontouchend = function () {
       using = false;
-      console.log('我好了')
+      //console.log('我好了')
     }
   }else{
     //非触屏设备
@@ -111,9 +157,9 @@ function listenToUser(canvas) {
 //画线
 function drawLine(x1, y1, x2, y2) {
   context.beginPath();
-  context.strokeStyle = '#211e55'
+  //context.strokeStyle = '#211e55'
   context.moveTo(x1, y1); //起点
-  context.lineWidth = 5;
+  context.lineWidth = lineWidth;
   context.lineTo(x2, y2); //终点
   context.stroke();
   context.closePath();
@@ -121,7 +167,7 @@ function drawLine(x1, y1, x2, y2) {
 
 function drawCircle(x, y, radius) {
   context.beginPath()
-  context.fillStyle = '#211e55'
+  //context.fillStyle = '#211e55'
   context.arc(x, y, radius, 0, 360);
   context.fill();
 }
