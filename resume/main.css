@@ -81,7 +81,8 @@ h1,h2,h3,h4,h5,h6{
   position: relative;
 }
 
-.topNavBar nav>ul>li>a:hover::after {
+.topNavBar nav>ul>li.active>a::after,
+.topNavBar nav > ul > li.highlight > a::after {
   //border-bottom: 3px solid rgb(216, 131, 35);
   content: '';
   display: block;
@@ -106,16 +107,30 @@ h1,h2,h3,h4,h5,h6{
 .topNavBar .submenu{
   display: none;
   position: absolute;
-  left: 0;
+  right: 0px;
   top: 100%;
+  background: white;
+  color: #3d4451;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .topNavBar .submenu > li{
   white-space: nowrap;
+  padding: 5px 10px;
 }
 
-.topNavBar .submenu.active{
+.topNavBar li.active > .submenu{
   display: block; 
+  animation: submenuSlide .5s;
+}
+
+@keyframes submenuSlide{
+  0%{
+    margin-right: 100%;
+  }
+  100%{
+    margin-right: 0%;
+  }
 
 }
 
