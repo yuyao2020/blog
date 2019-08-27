@@ -14,24 +14,30 @@
       fill: currentColor;
       overflow: hidden;
     }
-    .site-welcome{
+
+    .site-welcome {
       display: none;
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: #888;
       z-index: 1;
       justify-content: center;
       align-items: center;
     }
-    .site-welcome.active{
+
+    .site-welcome.active {
       display: flex;
     }
   </style>
+
 </head>
 
 <body>
   <div id="siteWelcome" class="site-welcome active">
-      <div class="loading"></div>
+    <div class="loading"></div>
   </div>
   <div id="topNavBar" class="topNavBar">
     <div class="topNavBar-inner clearfix">
@@ -49,7 +55,7 @@
           </li>
           <li>
             <a href="#siteWorks">作品</a>
-            <ul class="submenu" >
+            <ul class="submenu">
               <li>作 品1</li>
               <li>作 品2</li>
               <li>作 品3</li>
@@ -216,15 +222,15 @@
       </div>
     </nav>
     <script>
-      portfolio1.onclick= function(){
+      portfolio1.onclick = function () {
         portfolioBar.className = 'bar state-1'
       }
 
-      portfolio2.onclick= function(){
+      portfolio2.onclick = function () {
         portfolioBar.className = 'bar state-2'
       }
 
-      portfolio3.onclick= function(){
+      portfolio3.onclick = function () {
         portfolioBar.className = 'bar state-3'
       }
     </script>
@@ -236,39 +242,85 @@
       <div class="small" style="top: 0px;left: 644px;">
         <img src="./img/2.jpg" alt="作品2">
       </div>
-      <div class="small" style="top: 299px;left: 644px " >
+      <div class="small" style="top: 299px;left: 644px ">
         <img src="./img/3.jpg" alt="作品3">
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.4.0/Tween.min.js"></script>
     <script>
-      setTimeout (function(){
+      setTimeout(function () {
         siteWelcome.classList.remove('active')
-      },666)
-    window.onscroll = function(xxxx){
-        if(window.scrollY > 0){
+      }, 666)
+      window.onscroll = function (xxxx) {
+        if (window.scrollY > 0) {
           topNavBar.classList.add('sticky')
-        }else{
+        } else {
           topNavBar.classList.remove('sticky')
         }
       }
       let liTags = document.querySelectorAll('nav.menu > ul > li')
-      for(let i=0; i<liTags.length; i++){
-        liTags[i].onmouseenter = function(x){
+      for (let i = 0; i < liTags.length; i++) {
+        liTags[i].onmouseenter = function (x) {
           x.currentTarget.classList.add('active')
         }
-        liTags[i].onmouseleave = function(x){
+        liTags[i].onmouseleave = function (x) {
           x.currentTarget.classList.remove('active')
         }
       }
       let aTags = document.querySelectorAll('nav.menu > ul > li > a')
-      for(let i = 0; i < aTags.length; i++){
-        aTags[i].onclick = function(x){
+
+      function animate(time) {
+        requestAnimationFrame(animate);
+        TWEEN.update(time);
+      }
+      requestAnimationFrame(animate);
+
+      for (let i = 0; i < aTags.length; i++) {
+        aTags[i].onclick = function (x) {
           x.preventDefault()
           let a = x.currentTarget
-          let herf = a.getAttribute('href')//'#siteAbout' api知识点
+          let herf = a.getAttribute('href') //'#siteAbout' api知识点
           let element = document.querySelector(herf)
-          let top = element.offsetTop  //查阅api
-          window.scrollTo(0,top - 80)
+          let top = element.offsetTop //查阅api
+          //let top = document.querySelector(x.currentTarget.getAttribute('herf')).offsetTop,上面四句的浓缩形式
+          //window.scrollTo(0,top - 80)
+          /*
+          let n = 25 // 动多少次, 一秒钟动25次方能抵消抖动感。
+          let duration = 500 / n //多长时间动一次
+          let currentTop = window.scrollY
+          let targetTop = top - 80
+          let distance = (targetTop - currentTop) / n
+          console.log(n)
+          console.log(currentTop)
+          console.log(targetTop)
+          console.log(distance)
+          let i = 0
+          let id = setInterval(()=> {
+            if(i===n){
+              window.clearInterval(id)
+              return
+            }
+            i = i + 1
+            window.scrollTo(0, currentTop + distance * i)
+          },duration)
+          被缓动替代*/
+          let currentTop = window.scrollY
+          let targetTop = top - 80
+          let s = targetTop - currentTop
+          var t = Math.abs((s/100)*300)
+          if(t>500){t = 500}
+          var coords = {
+            y: currentTop
+          };
+          var tween = new TWEEN.Tween(coords)
+            .to({
+              y: targetTop
+            }, t)
+            .easing(TWEEN.Easing.Quadratic.InOut)//https://www.xuanfengge.com/easeing/easeing/此网站去挑选缓动类型
+            .onUpdate(function () {
+              window.scrollTo(0,coords.y)
+            })
+            .start();
         }
       }
     </script>
