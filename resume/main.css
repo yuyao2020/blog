@@ -32,8 +32,25 @@ h1,h2,h3,h4,h5,h6{
   clear: both;
 }
 
+[data-x].offset{
+  transform: translateY(100px);
+}
+[data-x]{
+  transform: translateY(0);
+  transition: all 0.5s;
+}
+@keyframes slideUp{
+  0%{
+    transform: translateY(-50px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+
+}
+
 .topNavBar {
-  padding: 23px 0 23px 0;
+  padding: 23px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,7 +60,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .topNavBar.sticky{
-  background: white; padding: 10px 0; box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);color: #3d4451;
+  background: white; padding: 10px 0; box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);color: #3d4451; z-index: 1;
 }
 
 .topNavBar-inner {
@@ -323,14 +340,22 @@ section.skills .progressBar{
   background: #fae1e1;
   border-radius: 1.5px;
   margin: 3.5px 0 40px;
+  overflow: hidden;
 }
 
-section.skills .progressBar .progress{
+section.skills .progressBar > .progress{
   height: 100%;
   background: #e6686a;
   width: 70%;
   border-radius: 1.5px;
+  transform: translateX(0);
+  transition: all 1s;
 }
+
+section.skills.offset .progress{
+  transform: translateX(-100%);
+}
+
 section.portfolio{
   text-align: center;
   margin-bottom: 100px;
