@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Hangman!</h1>
+  <script>
+    var words = [
+      "javascript",
+      "monkey",
+      "amazing",
+      "pancake"
+    ];
+    var word = words[Math.floor(Math.random() * words.length)];
+    //console.log(word)
+    var answerArray = [];
+    for (var i = 0; i < word.length; i++) {
+      answerArray[i] = "_";
+    }
+    var remainingLetters = word.length;
+    while (remainingLetters > 0) {
+      alert(answerArray.join(" "));
+      var guess = prompt("请输入你猜测的一个字母，不想玩了就点取消退出！");
+      if (guess === null) {
+        break;
+      } else if (guess.length !==1 ) {
+        alert("请输入一个，一个！！");
+      }else {
+        for (var j = 0; j < word.length; j++) {
+          if (word[j] === guess) {
+            answerArray[j] = guess;
+            remainingLetters--;
+          }
+        }
+      }
+    }
+    alert(answerArray.join(" "));
+    alert("好样的! 答案是 " + word);
+  </script>
+</body>
+
+</html>
