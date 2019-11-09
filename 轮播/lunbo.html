@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link rel="stylesheet" href="./lunbo.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>流动山川</title>
+  <style>
+    .images{
+      display: flex;
+      align-items: flex-start;
+      transition: transform 0.5s;
+    }
+     .images > img{
+    
+     }
+    .window{
+      width: 666px;
+      overflow: hidden;
+    }
+    </style>
+</head>
+<body>
+  <div class="window">
+    <div class="images" id=images>
+      <img src="./1.png" width = 666 height = 375 alt="">
+      <img src="./2.png" width = 666 height = 375 alt="">
+      <img src="./3.png" width = 666 height = 375 alt="">
+      <img src="./4.png" width = 666 height = 375 alt="">
+     </div>
+      <span id="buttons">
+        <span>第1张</span>
+        <span>第2张</span>
+        <span>第3张</span>
+        <span>第4张</span>
+      </span>
+    </div>
+</body>
+<script src="./lunbo.js"></script>
+</html>
